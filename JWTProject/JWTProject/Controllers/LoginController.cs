@@ -17,27 +17,27 @@ namespace JWTProject.Controllers
     {
         private readonly IOptions<appsettings> _options;
         private readonly ILoginStore _loginStore;
-        public LoginController(IOptions<appsettings> options,ILoginStore loginStore) 
+        public LoginController(IOptions<appsettings> options, ILoginStore loginStore)
         {
-            _options = options; 
-            _loginStore = loginStore;   
+            _options = options;
+            _loginStore = loginStore;
         }
-        private readonly string _connectionString = "Server=192.168.10.28\\SQL2016;Database=JWTSample;User Id=dbuser;Password=$y$40rE@2021#$!;Integrated Security=False; Encrypt=false;TrustServerCertificate=True";
+        //private readonly string _connectionString = "Server=192.168.10.28\\SQL2016;Database=JWTSample;User Id=dbuser;Password=$y$40rE@2021#$!;Integrated Security=False; Encrypt=false;TrustServerCertificate=True";
         //private readonly string _connectionString = "Data Source=192.168.10.28\\SQL2016;Initial Catalog=JWTSample;Integrated Security=False;User Id=dbuser;Password=$y$40rE@2021#$!";
 
         [HttpPost]
-         public string RegisterUser(Login login)
+        public string RegisterUser(Login login)
         {
-            string msg=_loginStore.RegisterUser(login);
+            string msg = _loginStore.RegisterUser(login);
             return msg;
         }
-      
+
         [HttpPost]
         public string ValidateUser(string username, string password)
         {
             string token = _loginStore.ValidateUser(username, password);
             return token;
         }
-      
+
     }
 }
